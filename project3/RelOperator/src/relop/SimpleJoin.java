@@ -101,7 +101,6 @@ public class SimpleJoin extends Iterator {
 				for (int i = 0; i < preds.length; i++)
 					if (preds[i].evaluate(nextTuple)) {
 						nextTupleIsConsumed = false;
-						inner.restart();
 						return true;
 					}
 			}
