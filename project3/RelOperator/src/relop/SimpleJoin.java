@@ -85,9 +85,10 @@ public class SimpleJoin extends Iterator {
 
 		Tuple rightTuple;
 		
-		if (startJoin)
+		if (startJoin){
 			leftTuple = outer.getNext();
-
+			startJoin =false;
+		}
 		while (true) {
 
 			while (inner.hasNext()) {
