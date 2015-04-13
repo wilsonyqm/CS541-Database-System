@@ -1,7 +1,3 @@
 DeptId, Name, MinSalary, MaxSalary
 1, Computer Science, 1000, 10000
 5, Mechanical Engineering, 10000, 10000
-3, Electrical Engineering, 10001, 100001
-1, Computer Science, 1000, 10000
-2, Industry Engineering, 5000, 200001
-4, Computer Engineering, 20000, 200000

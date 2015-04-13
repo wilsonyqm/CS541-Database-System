@@ -85,10 +85,12 @@ class ROTest extends TestDriver {
 		}
 
 	} // public static void main (String argv[])
-
+	
+	
 	/**
 	 * 
 	 */
+	
 	protected boolean test1() {
 		try {
 
@@ -162,6 +164,7 @@ class ROTest extends TestDriver {
 					AttrType.FIELDNO, 0, AttrType.FIELDNO, 5) };
 			SimpleJoin join = new SimpleJoin(new FileScan(s_drivers, file),
 					new FileScan(s_drivers, file), preds);
+
 			pro = new Projection(join, 0, 1, 5, 6);
 			pro.execute();
 
@@ -191,10 +194,13 @@ class ROTest extends TestDriver {
 			System.out.println();
 		}
 	} // protected boolean test1()
-
+	
+	
 	/**
 	 * SELECT * FROM Drivers D INNER JOIN Rides R ON (D.DriverId = R.DriverId);
 	 */
+	
+	
 	protected boolean test2() {
 		try {
 
@@ -283,11 +289,13 @@ class ROTest extends TestDriver {
 			System.out.println();
 		}
 	} // protected boolean test2()
-
+	
 	/**
 	 * SELECT * FROM Groups G INNER JOIN Rides R ON (G.GroupId = R.GroupId) INNER
 	 * JOIN Drivers D ON (R.DriverId = D.DriverId) WHERE D.NumSeats < G.GroupId;
 	 */
+	
+	
 	protected boolean test3() {
 		try {
 
@@ -375,5 +383,5 @@ class ROTest extends TestDriver {
 			System.out.println();
 		}
 	} // protected boolean test3()
-
+	
 } // class ROTest extends TestDriver

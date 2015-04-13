@@ -12,8 +12,8 @@ import index.HashIndex;
  */
 public class IndexScan extends Iterator {
 	
-	private HeapFile heapFile;
-	private HashIndex hashIndex;
+	protected HeapFile heapFile;
+	protected HashIndex hashIndex;
 	private Schema schema1;
 	private boolean open;
 	private BucketScan bucketScan;
@@ -76,12 +76,14 @@ public class IndexScan extends Iterator {
    * @throws IllegalStateException if no more tuples
    */
   public Tuple getNext() {
-    Tuple tuple = null;
+    Tuple tuple = new Tuple(schema1);
     if (open){
-    	if (bucketScan.hasNext()){
-    		RID rid = bucketScan.getNext();
-    		byte[] data = heapFile.selectRecord(rid);
+    	RID rid = bucketScan.getNext();
+    	byte[] data = heapFile.selectRecord(rid);
+    	if (data != null){
     		tuple = new Tuple(schema1, data);
+    	}else{
+    		throw new IllegalStateException("No more tuples....");
     	}
     }
     return tuple;

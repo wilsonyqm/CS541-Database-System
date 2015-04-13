@@ -16,6 +16,7 @@ public class Projection extends Iterator {
 	  this.fields = fields;
 	  this.schema = new Schema(fields.length);
 	  
+	  //set the new schema
 	  for (int i = 0; i < fields.length;i++){
 		  int fieldNumber = fields[i];
 		  int type = iter.schema.fieldType(fieldNumber);
@@ -31,6 +32,7 @@ public class Projection extends Iterator {
    */
   public void explain(int depth) {
 	  System.out.println("Projection");
+	  iterator.explain(depth+1);
   }
 
   /**

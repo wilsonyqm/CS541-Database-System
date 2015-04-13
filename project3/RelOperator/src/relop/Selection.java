@@ -20,8 +20,7 @@ public class Selection extends Iterator {
   
   public Selection(Iterator iter, Predicate... preds) {
 	  this.iterator = iter;
-	  this.predicate = preds;
-	  
+	  this.predicate = preds;	  
 	  this.schema = iterator.getSchema();
 	  nextTupleIsConsumed = true; 
   }
@@ -63,9 +62,8 @@ public class Selection extends Iterator {
 			return true;
 		
 	while (true) {
-
 		while (iterator.hasNext()) {
-				// try to match
+			// try to match
 			nextTuple = iterator.getNext();
 			for (int i = 0; i < predicate.length; i++)
 				if (predicate[i].evaluate(nextTuple)) {
@@ -75,7 +73,6 @@ public class Selection extends Iterator {
 		}
 		return false;
 	}
-	 
   }
 
   /**

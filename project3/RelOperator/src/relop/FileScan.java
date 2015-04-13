@@ -10,7 +10,7 @@ import heap.HeapScan;
  */
 public class FileScan extends Iterator {
 	private HeapScan heapScan;
-	private HeapFile hpFile;
+	protected HeapFile hpFile;
 	private Schema schema1;
 	private boolean open;
 
@@ -28,12 +28,12 @@ public class FileScan extends Iterator {
   }
 
   /**
-   * Gives a one-line explaination of the iterator, repeats the call on any
+   * Gives a one-line explanation of the iterator, repeats the call on any
    * child iterators, and increases the indent depth along the way.
    */
   public void explain(int depth) {
     //throw new UnsupportedOperationException("Not implemented");
-	  System.out.println("");
+	  System.out.println("heap scan");
   }
 
   /**
@@ -72,10 +72,7 @@ public class FileScan extends Iterator {
 	if (open){
 		return heapScan.hasNext();
 	}
-	
-	return false;
-    
-	
+	return false;    	
   }
 
   /**

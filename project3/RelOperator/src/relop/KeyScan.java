@@ -9,12 +9,10 @@ import index.*;
  * Wrapper for hash scan, an index access method.
  */
 
-
-
 public class KeyScan extends Iterator {
 	private HashScan hashScan;
 	private SearchKey searchkey;
-	private HeapFile heapFile;
+	protected HeapFile heapFile;
 	private HashIndex hashIndex;
 	private Schema schema1;
 	private boolean open;
@@ -70,10 +68,7 @@ public class KeyScan extends Iterator {
    * Returns true if there are more tuples, false otherwise.
    */
   public boolean hasNext() {
-	  if (open){
-		  return hashScan.hasNext();
-	  }
-	  return false;
+	  return hashScan.hasNext();
   }
 
   /**
@@ -83,15 +78,16 @@ public class KeyScan extends Iterator {
    */
   public Tuple getNext() {
 	 Tuple tuple = new Tuple(schema1);
-	  if (open){
-		  if (hashScan.hasNext()){
-			  RID rid = hashScan.getNext();
-			  byte[] data = heapFile.selectRecord(rid);
-			  tuple = new Tuple(schema1, data);
-		  }
-	  }
-	  
-	  return tuple;
+	 if(open){
+		 RID rid = hashScan.getNext();
+		 byte[] data = heapFile.selectRecord(rid);
+		 if (data != null){
+			 tuple = new Tuple(schema1, data);
+		 }else{
+			 throw new IllegalStateException("No more tuples....");
+		 }
+	 }
+	 return tuple;
   }
 
 } // public class KeyScan extends Iterator
